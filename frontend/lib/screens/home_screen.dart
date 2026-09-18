@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../models/asignatura.dart';
-import '../models/material.dart';
+import '../models/material.dart' as models;
 import '../services/api_client.dart';
 import '../services/asignatura_service.dart';
 import '../services/material_service.dart';
@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final _textoCtrl = TextEditingController();
   List<Asignatura> _asignaturas = [];
   Asignatura? _asignaturaSeleccionada;
-  List<Material> _materiales = [];
+  List<models.Material> _materiales = [];
   bool _cargando = true;
   String? _error;
 
@@ -68,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  Future<void> _abrirDetalle(Material material) async {
+  Future<void> _abrirDetalle(models.Material material) async {
     await Navigator.of(context).push(
       MaterialPageRoute(builder: (_) => MaterialDetailScreen(materialId: material.id)),
     );

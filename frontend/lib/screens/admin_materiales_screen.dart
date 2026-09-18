@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../models/material.dart';
+import '../models/material.dart' as models;
 import '../services/api_client.dart';
 import '../services/material_service.dart';
 import '../state/session.dart';
@@ -16,7 +16,7 @@ class AdminMaterialesScreen extends StatefulWidget {
 }
 
 class _AdminMaterialesScreenState extends State<AdminMaterialesScreen> {
-  List<Material> _materiales = [];
+  List<models.Material> _materiales = [];
   bool _cargando = true;
   String? _error;
 
@@ -42,7 +42,7 @@ class _AdminMaterialesScreenState extends State<AdminMaterialesScreen> {
     }
   }
 
-  Future<void> _cambiarEstado(Material m, String nuevoEstado) async {
+  Future<void> _cambiarEstado(models.Material m, String nuevoEstado) async {
     try {
       await MaterialService(_token).actualizar(m.id, {'estado': nuevoEstado});
       _cargar();
@@ -52,7 +52,7 @@ class _AdminMaterialesScreenState extends State<AdminMaterialesScreen> {
     }
   }
 
-  Future<void> _eliminar(Material m) async {
+  Future<void> _eliminar(models.Material m) async {
     final confirmar = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
